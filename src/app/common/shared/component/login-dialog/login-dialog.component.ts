@@ -40,7 +40,6 @@ export class LoginDialogComponent implements OnInit {
     this.authService.signOut().then(() => {
       this.firestoreService.disableNetwork().then(() => {
         this.router.navigate(['/']);
-        this.sharedService.signOutSuccess();
       });
     });
   }
