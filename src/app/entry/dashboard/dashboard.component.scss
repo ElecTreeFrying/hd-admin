@@ -1,0 +1,43 @@
+.wrap {
+  margin: 50px auto;
+}
+
+#row-01 {
+  display: flex;
+  flex-flow: row wrap;
+
+  .mat-raised-button:nth-child(1),
+  .mat-raised-button:nth-child(2) {
+    margin-right: 15px;
+  }
+}
+
+#row-02 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  #col-01 {
+    flex-basis: 49%;
+
+    h5 {
+      margin-top: 24px;
+    }
+
+    .mat-divider {
+      margin: 12px 0;
+    }
+  }
+
+  #col-02 {
+    flex-basis: 49%;
+
+    h5 {
+      margin-top: 24px;
+    }
+
+    .mat-divider {
+      margin: 12px 0;
+    }
+  }
+}

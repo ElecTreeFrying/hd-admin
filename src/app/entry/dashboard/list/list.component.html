@@ -1,0 +1,71 @@
+<div id="wrapper">
+
+  <div *ngIf="isAdmin">
+    no preview available.
+  </div>
+
+  <div *ngIf="!isAdmin">
+
+    <p *ngIf="isPatient">Number of patients registerd: 5</p>
+    <p *ngIf="isDoctor">Number of doctors registerd: 5</p>
+
+    <mat-form-field color="accent" appearance="fill" *ngIf="isPatient">
+      <mat-label>Patient list</mat-label>
+      <input matInput type="text" [formControl]="patientControl">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="fill" *ngIf="isDoctor">
+      <mat-label>Doctor list</mat-label>
+      <input matInput type="text" [formControl]="doctorControl">
+    </mat-form-field>
+
+    <div id="content">
+
+      <div id="col-01">
+        <p *ngIf="isPatient">Patient details</p>
+        <p *ngIf="isDoctor">Doctor details</p>
+
+        <mat-divider></mat-divider>
+
+        <div id="patient" *ngIf="isPatient">
+          <p>Patient name</p>
+          <p>Patient number</p>
+          <p>Patient email</p>
+        </div>
+
+        <div id="patient" *ngIf="isDoctor">
+          <p>Doctor name</p>
+          <p>Doctor number</p>
+          <p>Doctor email</p>
+        </div>
+      </div>
+
+      <div id="col-02">
+        <p *ngIf="isPatient">Assigned doctors</p>
+        <p *ngIf="isDoctor">Assigned patients</p>
+
+        <mat-divider></mat-divider>
+
+        <div *ngIf="isPatient">
+          <p>1. Lorem Ipsum Dolor</p>
+          <p>2. Lorem Ipsum Dolor</p>
+          <p>3. Lorem Ipsum Dolor</p>
+          <p>4. Lorem Ipsum Dolor</p>
+          <p>5. Lorem Ipsum Dolor</p>
+        </div>
+
+        <div *ngIf="isDoctor">
+          <p>1. Lorem Ipsum Dolor</p>
+          <p>2. Lorem Ipsum Dolor</p>
+          <p>3. Lorem Ipsum Dolor</p>
+          <p>4. Lorem Ipsum Dolor</p>
+          <p>5. Lorem Ipsum Dolor</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

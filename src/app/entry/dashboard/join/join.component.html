@@ -1,0 +1,22 @@
+<div id="wrapper">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <mat-form-field color="accent" *ngIf="isPatient">
+      <mat-label>Patient</mat-label>
+      <input matInput type="text" formControlName="patient">
+    </mat-form-field>
+
+    <mat-form-field color="accent">
+      <mat-label>Doctor</mat-label>
+      <input matInput type="text" formControlName="doctor">
+    </mat-form-field>
+
+    <mat-form-field color="accent" *ngIf="isDoctor">
+      <mat-label>Patient</mat-label>
+      <input matInput type="text" formControlName="patient">
+    </mat-form-field>
+
+    <button mat-raised-button type="submit">SUBMIT</button>
+
+  </form>
+</div>
