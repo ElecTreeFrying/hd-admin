@@ -12,6 +12,9 @@ import { RegisterComponent } from './register/register.component';
 import { JoinComponent } from './join/join.component';
 import { ListComponent } from './list/list.component';
 
+import { FirestoreService } from '../../common/core/service/firestore.service';
+import { DatabaseService } from '../../common/core/service/database.service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +29,10 @@ import { ListComponent } from './list/list.component';
     RegisterComponent,
     JoinComponent,
     ListComponent
+  ],
+  providers: [
+    FirestoreService,
+    DatabaseService
   ]
 })
 export class DashboardModule { }

@@ -6,60 +6,74 @@
 
   <div *ngIf="!isAdmin">
 
-    <p *ngIf="isPatient">Number of patients registerd: 5</p>
-    <p *ngIf="isDoctor">Number of doctors registerd: 5</p>
+    <p *ngIf="isPatient">Number of patients registerd: {{ patients.length }}</p>
+    <p *ngIf="isDoctor">Number of doctors registerd: {{ doctors.length }}</p>
 
     <mat-form-field color="accent" appearance="fill" *ngIf="isPatient">
-      <mat-label>Patient list</mat-label>
-      <input matInput type="text" [formControl]="patientControl">
+      <mat-label *ngIf="patients.length === 0">Initializing patient list</mat-label>
+      <mat-label *ngIf="patients.length !== 0">Patient</mat-label>
+      <input matInput [matAutocomplete]="reactiveAutoPatient" [formControl]="patientControl" (focus)="onFocus()">
+      <button mat-icon-button matSuffix color="accent" [matTooltip]="'clear'" (click)="onClear()"><mat-icon>clear</mat-icon></button>
+      <mat-autocomplete #reactiveAutoPatient [displayWith]="displayFn">
+        <mat-option *ngFor="let patient of reactivePatients | async" [value]="patient">
+          <span>{{ patient.fullname }}</span>
+          <span> ({{ patient.patientNo }}) </span>
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="fill" *ngIf="isDoctor">
-      <mat-label>Doctor list</mat-label>
-      <input matInput type="text" [formControl]="doctorControl">
+      <mat-label *ngIf="doctors.length === 0">Initializing doctor list</mat-label>
+      <mat-label *ngIf="doctors.length !== 0">Doctor</mat-label>
+      <input matInput [matAutocomplete]="reactiveAutoDoctor" [formControl]="doctorControl" (focus)="onFocus()">
+      <button mat-icon-button matSuffix color="accent" [matTooltip]="'clear'" (click)="onClear()"><mat-icon>clear</mat-icon></button>
+      <mat-autocomplete #reactiveAutoDoctor [displayWith]="displayFn">
+        <mat-option *ngFor="let doctor of reactiveDoctors | async" [value]="doctor">
+          <span>{{ doctor.fullname }}</span>
+          <span> ({{ doctor.doctorNo }}) </span>
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
     <div id="content">
 
-      <div id="col-01">
+      <div id="col-01" *ngIf="patient || doctor">
         <p *ngIf="isPatient">Patient details</p>
         <p *ngIf="isDoctor">Doctor details</p>
 
         <mat-divider></mat-divider>
 
         <div id="patient" *ngIf="isPatient">
-          <p>Patient name</p>
-          <p>Patient number</p>
-          <p>Patient email</p>
+          <p>{{ patient?.fullname }}</p>
+          <p>{{ patient?.patientNo }}</p>
+          <p>{{ patient?.email }}</p>
         </div>
 
         <div id="patient" *ngIf="isDoctor">
-          <p>Doctor name</p>
-          <p>Doctor number</p>
-          <p>Doctor email</p>
+          <p>{{ doctor?.fullname }}</p>
+          <p>{{ doctor?.doctorNo }}</p>
+          <p>{{ doctor?.email }}</p>
         </div>
       </div>
 
-      <div id="col-02">
+      <div id="col-02" *ngIf="patient || doctor">
         <p *ngIf="isPatient">Assigned doctors</p>
         <p *ngIf="isDoctor">Assigned patients</p>
 
         <mat-divider></mat-divider>
 
         <div *ngIf="isPatient">
-          <p>1. Lorem Ipsum Dolor</p>
-          <p>2. Lorem Ipsum Dolor</p>
-          <p>3. Lorem Ipsum Dolor</p>
-          <p>4. Lorem Ipsum Dolor</p>
-          <p>5. Lorem Ipsum Dolor</p>
+          <p *ngIf="(patientDoctors | async)?.length === 0">Please wait...</p>
+          <p *ngFor="let doctor of patientDoctors | async">
+            {{ doctor?.fullname }} - {{ doctor?.doctorNo }}
+          </p>
         </div>
 
         <div *ngIf="isDoctor">
-          <p>1. Lorem Ipsum Dolor</p>
-          <p>2. Lorem Ipsum Dolor</p>
-          <p>3. Lorem Ipsum Dolor</p>
-          <p>4. Lorem Ipsum Dolor</p>
-          <p>5. Lorem Ipsum Dolor</p>
+          <p *ngIf="(doctorPatients | async)?.length === 0">Please wait...</p>
+          <p *ngFor="let patient of doctorPatients | async">
+            {{ patient?.fullname }} - {{ patient?.patientNo }}
+          </p>
         </div>
 
       </div>

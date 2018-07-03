@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatExpansionPanel, MatAccordion } from '@angular/material';
+import { map } from 'rxjs/operators'
+
+import { AuthService } from '../../common/core/service/auth.service';
+import { SharedService } from '../../common/core/service/shared.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,9 +29,18 @@ export class DashboardComponent implements OnInit {
   panelState: boolean = true;
   isExpanded: boolean = false;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private sharedService: SharedService
+  ) { }
 
   ngOnInit() {
+    this.authService.state.pipe(
+      map((user: any) => user !== null)
+    ).subscribe((state) => {
+      state ? 0 : this.router.navigate(['/']);
+    });
   }
 
   onExpandPanel() {
@@ -38,6 +52,7 @@ export class DashboardComponent implements OnInit {
 
   onClosePanel() {
     this.isExpanded = false;
+    this.sharedService.setPanel = true;
   }
 
   expandAllPanels() {

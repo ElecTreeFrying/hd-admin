@@ -5,6 +5,8 @@ import { startWith } from 'rxjs/operators';
 
 import { LoginDialogComponent } from '../common/shared/component/login-dialog/login-dialog.component';
 
+import { AuthService } from '../common/core/service/auth.service';
+import { FirestoreService } from '../common/core/service/firestore.service';
 import { SharedService } from '../common/core/service/shared.service';
 
 @Component({
@@ -19,6 +21,8 @@ export class EntryComponent implements OnInit {
   constructor(
     private router: Router,
     private dialog: MatDialog,
+    private authService: AuthService,
+    private firestoreService: FirestoreService,
     private sharedService: SharedService
   ) { }
 
@@ -37,6 +41,7 @@ export class EntryComponent implements OnInit {
   }
 
   openDialog() {
+    this.dialog.closeAll();
     this.dialogRef = this.dialog.open(LoginDialogComponent, {
       closeOnNavigation: true,
     });
@@ -45,10 +50,14 @@ export class EntryComponent implements OnInit {
       this.openDialog();
       this.sharedService.snackbar('Invalid form.');
     });
+  }
 
-    this.dialogRef.keydownEvents().subscribe(() => {
-      this.openDialog();
-      this.sharedService.snackbar('Invalid form.');
+  onSignout() {
+    this.authService.signOut().then(() => {
+      this.firestoreService.disableNetwork().then(() => {
+        this.router.navigate(['/']);
+        this.sharedService.signOutSuccess();
+      });
     });
   }
 

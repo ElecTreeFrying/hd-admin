@@ -10,6 +10,8 @@ import { LoginDialogComponent } from '../common/shared/component/login-dialog/lo
 
 import { SharedService } from '../common/core/service/shared.service';
 
+import { EntryGuard } from '../common/core/service/route-guards';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { SharedService } from '../common/core/service/shared.service';
     LoginDialogComponent
   ],
   providers: [
-    SharedService
+    SharedService,
+    EntryGuard
   ]
 })
 export class EntryModule { }

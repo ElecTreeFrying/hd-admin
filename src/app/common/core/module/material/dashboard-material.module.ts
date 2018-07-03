@@ -7,7 +7,9 @@ import {
   MatInputModule,
   MatButtonModule,
   MatIconModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatAutocompleteModule,
+  MatOptionModule
 } from '@angular/material';
 
 @NgModule({
@@ -19,7 +21,9 @@ import {
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatAutocompleteModule,
+    MatOptionModule
   ]
 })
 export class DashboardMaterialModule { }

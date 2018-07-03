@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 
@@ -12,15 +11,13 @@ import { environment } from "../environments/environment";
 
 @NgModule({
   imports: [
-    CommonModule,
-    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule.enablePersistence(),
+  ],
+  exports: [
+    BrowserAnimationsModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFirestoreModule,
-  ],
-  providers: [
-
   ]
 })
 export class AppProviderModule { }
