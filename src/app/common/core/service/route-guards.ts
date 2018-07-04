@@ -24,3 +24,25 @@ export class EntryGuard implements CanActivate, CanActivateChild {
   }
 
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ExitGuard implements CanActivate, CanActivateChild {
+
+  constructor(
+    private router: Router,
+    private fire: AngularFireAuth
+  ) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.fire.authState.pipe(
+      map((user: any) => user === null)
+    );
+  }
+
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    return this.canActivate(route, state);
+  }
+
+}

@@ -42,3 +42,35 @@
     }
   }
 }
+
+@media (max-width: 429px) {
+  #row-01, #row-02, .inside  {
+    flex-direction: column;
+
+    div:last-child,
+    div:first-child {
+      flex-grow: 1;
+    }
+
+    .mat-raised-button {
+      margin: 8px 0;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 846px) and (min-width: 753px) {
+  #row-01, #row-02, .inside  {
+    flex-direction: column;
+
+    div:last-child,
+    div:first-child {
+      flex-grow: 1;
+    }
+
+    .mat-raised-button {
+      margin: 8px 0;
+      width: 100%;
+    }
+  }
+}

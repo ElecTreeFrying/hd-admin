@@ -31,6 +31,10 @@ export class SharedService {
     return this.snack.open(message, '', config);
   }
 
+  closeAllSnackBar() {
+    this.snack.dismiss();
+  }
+
   set setPanel(state: boolean) {
     this.panelChanged.next(state);
   }

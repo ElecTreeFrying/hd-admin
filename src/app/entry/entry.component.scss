@@ -23,3 +23,24 @@
     height: calc(100vh - 56px);
   }
 }
+
+@media (max-width: 767px) {
+  .mat-toolbar > .wrap {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 752px) {
+  .mat-toolbar > .wrap {
+    padding: 0 15px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 532px) {
+  .mat-toolbar > .wrap {
+    padding: 0;
+    margin: 0;
+  }
+}

@@ -24,7 +24,7 @@ export class LoginDialogComponent implements OnInit {
     private sharedService: SharedService
   ) {
     this.form = fb.group({
-      'email': [ '', [ Validators.required, Validators.email ] ],
+      'email': [ 'a@a.com "pasword is 123123"', [ Validators.required, Validators.email ] ],
       'password': [ '', [ Validators.required, Validators.minLength(2) ] ]
     });
   }
@@ -35,12 +35,6 @@ export class LoginDialogComponent implements OnInit {
   ngOnInit() {
     this.form.valueChanges.subscribe(() => {
       this.isProgressing = this.form.valid;
-    });
-
-    this.authService.signOut().then(() => {
-      this.firestoreService.disableNetwork().then(() => {
-        this.router.navigate(['/']);
-      });
     });
   }
 

@@ -8,10 +8,6 @@ import { EntryMaterialModule } from '../common/core/module/material/entry-materi
 import { EntryComponent } from './entry.component';
 import { LoginDialogComponent } from '../common/shared/component/login-dialog/login-dialog.component';
 
-import { SharedService } from '../common/core/service/shared.service';
-
-import { EntryGuard } from '../common/core/service/route-guards';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -20,15 +16,7 @@ import { EntryGuard } from '../common/core/service/route-guards';
     EntryMaterialModule
   ],
   declarations: [
-    EntryComponent,
-    LoginDialogComponent
-  ],
-  entryComponents: [
-    LoginDialogComponent
-  ],
-  providers: [
-    SharedService,
-    EntryGuard
+    EntryComponent
   ]
 })
 export class EntryModule { }

@@ -41,3 +41,24 @@
     }
   }
 }
+
+@media (max-width: 752px) {
+  #row-02 {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 473px) {
+  #row-01 {
+    flex-direction: column;
+
+    // Tlooks ugly but it doesnt work the other way around
+    // work only in this way.. soooooo.. yea
+    .mat-raised-button:nth-child(1),
+    .mat-raised-button:nth-child(2),
+    .mat-raised-button:nth-child(3) {
+      margin: 5px 0;
+    }
+
+  }
+}

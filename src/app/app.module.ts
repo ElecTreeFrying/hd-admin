@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppProviderModule } from "./app-provider.module";
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
+import { LoginDialogComponent } from './common/shared/component/login-dialog/login-dialog.component';
 
 import { AuthService } from './common/core/service/auth.service';
 
@@ -16,7 +18,11 @@ import { map } from 'rxjs/operators'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginDialogComponent
+  ],
+  entryComponents: [
+    LoginDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,7 @@ export class AppModule {
     this.authService.state.pipe(
       map((user: any) => user !== null)
     ).subscribe((state) => {
-      state ? 0 : this.router.navigate(['/']);
+      state ? this.router.navigate(['/', 'u']) : this.router.navigate(['/']);
     });
   }
 
