@@ -10,15 +10,11 @@ export class AuthService {
 
   constructor(private fire: AngularFireAuth) {
     fire.authState.subscribe((state) => {
-      // console.clear();
+      console.clear();
       state !== null ? console.log(state) : 0;
     });
 
     this.state = fire.authState;
-  }
-
-  test() {
-    console.log('test');
   }
 
   createUserWithEmailAndPassword(email: string, password: string) {
